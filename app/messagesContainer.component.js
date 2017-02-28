@@ -18,8 +18,13 @@ var MessagesContainer = (function () {
         this.messagesToShow = [];
         this.count = 10;
         this.left = 0;
-        this.flagLefMessage = false;
     }
+    MessagesContainer.prototype.onSelectMessage = function (message) {
+        debugger;
+        console.log(1111111);
+        this.currentMessage = message;
+        console.log(2222222);
+    };
     MessagesContainer.prototype.splitData = function (howManyToShow) {
         for (var i = 0; i < howManyToShow; i++)
             this.messagesToShow.push(this.messages[i]);
@@ -35,10 +40,7 @@ var MessagesContainer = (function () {
     MessagesContainer.prototype.ngOnChanges = function () {
         debugger;
     };
-    MessagesContainer.prototype.onSelectMessage = function (message) {
-        this.currentMessage = message;
-    };
-    MessagesContainer.prototype.myFunc = function (event) {
+    MessagesContainer.prototype.loadMor = function (event) {
         for (var i = this.count; i < this.count + 10 && i < this.messages.length; i++) {
             this.messagesToShow.push(this.messages[i]);
         }
@@ -50,7 +52,7 @@ var MessagesContainer = (function () {
 MessagesContainer = __decorate([
     core_1.Component({
         selector: 'message-container',
-        template: '<navbar [messagesCount]="messageCount"></navbar>  <a (click)="myFunc()">Reload Mor posts</a>  <messages [(messages)]="messagesToShow"></messages><messagesInfo [message]="currentMessage"></messagesInfo>'
+        template: '<navbar [messagesCount]="messageCount"></navbar>  <a (click)="loadMor()">Reload Mor posts</a>  <messages [(messages)]="messagesToShow" (onSelectMessage)="onSelectMessage($event)"></messages> <messagesInfo [message]="currentMessage"></messagesInfo>'
     }),
     __metadata("design:paramtypes", [messages_service_1.MessagesService])
 ], MessagesContainer);

@@ -21,11 +21,11 @@ export class MessagesComponent{
     @Output() onSelectMessage = new EventEmitter();
 
     select(m){
+        console.log("gal" , m)
+        debugger
         this.onSelectMessage.emit(m);
+         console.log("gal" , m)
         this.currentMessage = m;
-    }
-    onScrollGal(event){
-        console.log('scroll event', event);
     }
     
 }

@@ -16,11 +16,11 @@ var MessagesComponent = (function () {
         this.onSelectMessage = new core_1.EventEmitter();
     }
     MessagesComponent.prototype.select = function (m) {
+        console.log("gal", m);
+        debugger;
         this.onSelectMessage.emit(m);
+        console.log("gal", m);
         this.currentMessage = m;
-    };
-    MessagesComponent.prototype.onScrollGal = function (event) {
-        console.log('scroll event', event);
     };
     return MessagesComponent;
 }());

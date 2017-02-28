@@ -1,12 +1,12 @@
 import { Component, Input, Output, OnInit, OnChanges } from '@angular/core';
 import { NavBarComponent } from './navbar.component';
 import { MessagesComponent } from './messages.component';
-import { MessagesInfoComponent } from './massagedetailes.component';
+import { MessagesInfoComponent } from './messagedetailes.component';
 import { MessagesService } from './messages.service'
 
 @Component({
   selector: 'message-container',
-  template: '<navbar [messagesCount]="messageCount"></navbar>  <a (click)="myFunc()">Reload Mor posts</a>  <messages [(messages)]="messagesToShow"></messages><messagesInfo [message]="currentMessage"></messagesInfo>'
+  template: '<navbar [messagesCount]="messageCount"></navbar>  <a (click)="loadMor()">Reload Mor posts</a>  <messages [(messages)]="messagesToShow" (onSelectMessage)="onSelectMessage($event)"></messages> <messagesInfo [message]="currentMessage"></messagesInfo>'
 })
 export class MessagesContainer implements OnInit,OnChanges {
   messages = [];
@@ -15,9 +15,15 @@ export class MessagesContainer implements OnInit,OnChanges {
   messageCount;
   count = 10;
   left =0;
-  flagLefMessage = false;
 
   constructor(private _messgesService: MessagesService) {
+    
+  }
+  onSelectMessage(message) {
+    debugger
+    console.log(1111111)
+    this.currentMessage = message
+    console.log(2222222)
   }
 
   splitData(howManyToShow){
@@ -39,10 +45,8 @@ export class MessagesContainer implements OnInit,OnChanges {
     debugger;
   }
 
-  onSelectMessage(message) {
-    this.currentMessage = message
-  }
-  myFunc(event){
+  
+  loadMor(event){
     for(let i = this.count ; i < this.count + 10 && i < this.messages.length; i++ ){ 
         this.messagesToShow.push(this.messages[i]);
     } 
